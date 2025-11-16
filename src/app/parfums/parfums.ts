@@ -3,6 +3,7 @@ import { Parfum } from '../model/parfum.model';
 import { ParfumService } from '../services/parfum.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Auth } from '../services/auth';
 
 @Component({
   selector: 'app-parfums',
@@ -12,7 +13,9 @@ import { RouterLink } from '@angular/router';
 export class Parfums implements OnInit {
   parfums : Parfum[];
 
-  constructor(private parfumService:ParfumService) { 
+  constructor(private parfumService:ParfumService,
+    public authService: Auth
+  ) { 
     this.parfums=this.parfumService.listeParfum();
    }
 ngOnInit():void{

@@ -25,24 +25,22 @@ export class AddParfum implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Charger les genres
     this.genres = this.parfumService.listeGenres();
 
-    // Initialisation du formulaire réactif
     this.parfumForm = this.fb.group({
       idParfum: ['', Validators.required],
-      marqueParfum: ['', Validators.required],
-      nomParfum: ['', Validators.required],
-      prixParfum: ['', Validators.required],
+      marqueParfum: ['', [Validators.required, Validators.minLength(5)]],
+      nomParfum: ['', [Validators.required, Validators.minLength(5)]],
+      prixParfum: ['', [Validators.required,Validators.min(0)]],
       contenanceParfum: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]], // ✅ Validation email
+      email: ['', [Validators.required, Validators.email]],
       idGen: ['', Validators.required],
     });
   }
 
   addParfum() {
     if (this.parfumForm.invalid) {
-      this.err = 'Veuillez remplir tous les champs obligatoires correctement.';
+      this.err = '⚠️ Veuillez remplir tous les champs correctement.';
       this.parfumForm.markAllAsTouched();
       return;
     }
@@ -56,14 +54,12 @@ export class AddParfum implements OnInit {
       prixParfum: this.parfumForm.value.prixParfum,
       contenanceParfum: this.parfumForm.value.contenanceParfum,
       genre: this.parfumService.consulterGenre(this.parfumForm.value.idGen),
-      // on ajoute email pour stocker si tu veux
       email: this.parfumForm.value.email
     };
 
     this.parfumService.ajouterParfum(newParfum);
-    this.message = `Parfum "${newParfum.nomParfum}" ajouté avec succès !`;
+    this.message = `✅ Parfum "${newParfum.nomParfum}" ajouté avec succès !`;
 
-    // Petit délai pour montrer le message avant redirection
     setTimeout(() => {
       this.loading = false;
       this.router.navigate(['parfums']);

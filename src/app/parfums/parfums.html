@@ -27,8 +27,9 @@
             <td>{{ parfum.contenanceParfum }}</td>
              <td>{{ parfum.email }}</td>
             <td>{{parfum.genre.nomGen}}</td>
+            @if(authService.isAdmin()) {
             <td><a class="btn btn-danger" (click)="supprimerParfum(parfum)">supprimer</a></td>
- <td><a class="btn btn-success" [routerLink]="['/updateParfum',parfum.idParfum]">Modifier</a></td>             
+ <td><a class="btn btn-success" [routerLink]="['/updateParfum',parfum.idParfum]">Modifier</a></td>}             
           </tr>
         </tbody>
       }

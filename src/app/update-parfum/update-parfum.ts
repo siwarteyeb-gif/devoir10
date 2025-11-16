@@ -41,10 +41,10 @@ export class UpdateParfum implements OnInit {
     // Mettre à jour le genre du parfum
     this.currentParfum.genre = this.parfumService.consulterGenre(this.updatedGenId);
 
-    // Mettre à jour le parfum
+    
     this.parfumService.updateParfum(this.currentParfum);
 
-    // ✅ Rediriger directement vers la page d’accueil (ou liste des parfums)
+ 
     this.router.navigate(['parfums']); // ou [''] si ton home est vide
   }
 }

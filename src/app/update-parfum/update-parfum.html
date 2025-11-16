@@ -4,8 +4,7 @@
   </div>
 
   <form #parfumForm="ngForm">
-
-    <!-- ID -->
+    <!-- ======= Id ======= -->
     <div class="col-sm-2 col-md-2 col-lg-2 mb-3">
       <label>Id</label>
       <input
@@ -18,7 +17,7 @@
       />
     </div>
 
-    <!-- Marque -->
+    <!-- ======= Marque Parfum ======= -->
     <div class="col-sm-2 col-md-2 col-lg-2 mb-3">
       <label>Marque Parfum</label>
       <input
@@ -27,13 +26,19 @@
         name="marqueParfum"
         class="form-control"
         required
+        minlength="5"
       />
-      @if (parfumForm.controls['marqueParfum']?.invalid && parfumForm.controls['marqueParfum']?.touched) {
-        <small class="text-danger">⚠️ Ce champ est obligatoire</small>
+      @if (parfumForm.controls['marqueParfum']?.errors && parfumForm.controls['marqueParfum']?.touched) {
+        @if (parfumForm.controls['marqueParfum']?.errors?.['required']) {
+          <small class="text-danger">⚠️ Ce champ est obligatoire</small>
+        }
+        @if (parfumForm.controls['marqueParfum']?.errors?.['minlength']) {
+          <small class="text-danger">⚠️ La marque doit contenir au moins 5 caractères</small>
+        }
       }
     </div>
 
-    <!-- Nom -->
+    <!-- ======= Nom Parfum ======= -->
     <div class="col-sm-4 col-md-4 col-lg-4 mb-3">
       <label>Nom Parfum</label>
       <input
@@ -42,13 +47,19 @@
         name="nomParfum"
         class="form-control"
         required
+        minlength="5"
       />
-      @if (parfumForm.controls['nomParfum']?.invalid && parfumForm.controls['nomParfum']?.touched) {
-        <small class="text-danger">⚠️ Ce champ est obligatoire</small>
+      @if (parfumForm.controls['nomParfum']?.errors && parfumForm.controls['nomParfum']?.touched) {
+        @if (parfumForm.controls['nomParfum']?.errors?.['required']) {
+          <small class="text-danger">⚠️ Ce champ est obligatoire</small>
+        }
+        @if (parfumForm.controls['nomParfum']?.errors?.['minlength']) {
+          <small class="text-danger">⚠️ Le nom doit contenir au moins 5 caractères</small>
+        }
       }
     </div>
 
-    <!-- Prix -->
+    <!-- ======= Prix Parfum ======= -->
     <div class="col-sm-2 col-md-2 col-lg-2 mb-3">
       <label>Prix Parfum</label>
       <input
@@ -63,7 +74,7 @@
       }
     </div>
 
-    <!-- Contenance -->
+    <!-- ======= Contenance ======= -->
     <div class="col-sm-4 col-md-4 col-lg-4 mb-3">
       <label>Contenance</label>
       <input
@@ -78,7 +89,7 @@
       }
     </div>
 
-    <!-- ✅ Email -->
+    <!-- ======= Email ======= -->
     <div class="col-sm-4 col-md-4 col-lg-4 mb-3">
       <label>Email</label>
       <input
@@ -97,7 +108,7 @@
       }
     </div>
 
-    <!-- Genre -->
+    <!-- ======= Genre ======= -->
     <div class="col-sm-4 col-md-4 col-lg-4 mb-3">
       <label>Genre</label>
       <select
@@ -117,7 +128,7 @@
       }
     </div>
 
-    <!-- Bouton -->
+    <!-- ======= Bouton ======= -->
     <div class="mt-3">
       <button
         type="button"
@@ -127,7 +138,6 @@
       >
         Modifier
       </button>
-      
     </div>
   </form>
 </div>
